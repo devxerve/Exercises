@@ -28,3 +28,5 @@ replay_pid*
 .project
 .settings/
 bin/
+/2nd Quarter/Interfaces/JavaApplication1/nbproject/private/
+/2nd Quarter/Interfaces/JavaApplication1/build/
