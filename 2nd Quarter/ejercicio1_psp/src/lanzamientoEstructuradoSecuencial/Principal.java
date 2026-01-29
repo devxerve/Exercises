@@ -48,4 +48,5 @@ public class Principal {
 		System.out.println("Bye");
 		entrada.close();
 	}
+	
 }

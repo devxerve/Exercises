@@ -7,14 +7,14 @@ public class LanzarProceso {
     ProcessBuilder process;
     public String ruta;
     public int numero;
-    
-    LanzarProceso(String ruta, int numero){
+
+    LanzarProceso(String ruta, int numero) {
         this.ruta = ruta;
         this.numero = numero;
         contador_proceso++;
     }
-    
-    public void ejecutar(int numero){
+
+    public void ejecutar(int numero) {
         System.out.println("Ejecutando el proceso numero " + numero);
         process = new ProcessBuilder(this.ruta);
         try {
