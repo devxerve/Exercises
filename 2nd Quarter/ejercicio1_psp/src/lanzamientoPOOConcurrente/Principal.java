@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class Principal {
 // final static String ruta = "\"C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\Acrobat.exe\"";
-// final static String RUTA = "\"C:\\Program Files\\WindowsApps\\Microsoft.WindowsNotepad_11.2312.18.0_x64__8wekyb3d8bbwe\\Notepad\\Notepad.exe\"";
-final static String RUTA = "\"C:\\\\Program Files\\\\Oracle\\\\VirtualBox\\\\VirtualBox.exe\"";
+// final static String RUTA = "\"C:\\Program Files\\WindowsApps\\Microsoft.WindowsNotepad_11.2501.31.0_x64__8wekyb3d8bbwe\\Notepad\\Notepad.exe\"";
+final static String RUTA = "\"C:\\Program Files\\Oracle\\VirtualBox\\VirtualBox.exe\"";
 final static int INI_INT = 0;
 public static void main(String[] args) {
     System.out.println("Inicio");
