@@ -5,26 +5,24 @@
 package bloc;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.JFileChooser;
 
 /**
  *
- * @author LABORATORIOS
+ * @author ufvuser
  */
-public class Bloc_Jframe extends javax.swing.JFrame {
+public class Bloc extends javax.swing.JFrame {
 
     /**
-     * Creates new form Bloc_Jframe
+     * Creates new form Bloc
      */
-    public Bloc_Jframe() {
+    public Bloc() {
         initComponents();
     }
 
@@ -38,21 +36,21 @@ public class Bloc_Jframe extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        textArea = new javax.swing.JTextArea();
+        textarea = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         abrir = new javax.swing.JMenuItem();
-        nuevo = new javax.swing.JMenuItem();
         guardar = new javax.swing.JMenuItem();
+        nuevo = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        textArea.setColumns(20);
-        textArea.setRows(5);
-        jScrollPane1.setViewportView(textArea);
+        textarea.setColumns(20);
+        textarea.setRows(5);
+        jScrollPane1.setViewportView(textarea);
 
-        jMenu1.setText("File");
+        jMenu1.setText("Archivo");
 
         abrir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         abrir.setText("Abrir");
@@ -63,15 +61,6 @@ public class Bloc_Jframe extends javax.swing.JFrame {
         });
         jMenu1.add(abrir);
 
-        nuevo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        nuevo.setText("Nuevo");
-        nuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevoActionPerformed(evt);
-            }
-        });
-        jMenu1.add(nuevo);
-
         guardar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         guardar.setText("Guardar");
         guardar.addActionListener(new java.awt.event.ActionListener() {
@@ -81,9 +70,13 @@ public class Bloc_Jframe extends javax.swing.JFrame {
         });
         jMenu1.add(guardar);
 
+        nuevo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        nuevo.setText("Nuevo");
+        jMenu1.add(nuevo);
+
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        jMenu2.setText("Editar");
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -92,82 +85,62 @@ public class Bloc_Jframe extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1074, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 719, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void abrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirActionPerformed
-        File fichero = dialogoAbrirFichero();
-        int resultado = leerFichero(fichero.getPath());
-        if(resultado != 1){
-            System.out.println("Error al abrir el fichero");
-        }
-        
+        File fichero = null;
+        fichero = abrirFichero();
+        leerFichero(fichero);
     }//GEN-LAST:event_abrirActionPerformed
 
-    private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nuevoActionPerformed
+    private void leerFichero(File fichero) {
+        try{
+            FileReader fr = new FileReader(fichero);
+            BufferedReader br = new BufferedReader(fr);
+            String linea = br.readLine();
+            while(linea !=null){
+                textarea.setText(linea + "\n");
+                linea = br.readLine();
+            }
+            br.close();
+        }catch(FileNotFoundException e){
+            e.printStackTrace();
+        }
+        catch(IOException ex){
+            ex.printStackTrace();
+        }
+        
+        
+    }
+
+    private File abrirFichero() {
+        File archivo = null;
+        JFileChooser selector = new JFileChooser();
+        int seleccion = selector.showOpenDialog(selector);
+        if(seleccion == JFileChooser.APPROVE_OPTION){
+            archivo = selector.getSelectedFile();
+        }
+
+
+        return archivo;
+    }
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-        
+        // TODO add your handling code here:
     }//GEN-LAST:event_guardarActionPerformed
 
-  
-    
-    private File dialogoAbrirFichero(){
-        JFileChooser selector = new JFileChooser(); 
-        File fichero = null;
-        int seleccion = selector.showOpenDialog(abrir);
-        if(seleccion == JFileChooser.APPROVE_OPTION){
-            try {
-                fichero = selector.getSelectedFile();
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-                System.out.println("Error al abrir el archivo");
-                return null;
-            }
-        }
-        return fichero;
-    }
-    private int leerFichero(String ruta){
-        FileReader lector = null;
-        try {
-            lector = new FileReader(ruta);
-            BufferedReader br = new BufferedReader(lector);
-            try {
-                String linea = br.readLine();
-                String texto = " ";
-                while(linea != null){
-                    texto += linea + "\n";
-                    linea = br.readLine();
-                }
-                textArea.setText(texto);
-                    return 1;
-            } catch (IOException ex) {
-                Logger.getLogger(Bloc_Jframe.class.getName()).log(Level.SEVERE, null, ex);
-            }            
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Bloc_Jframe.class.getName()).log(Level.SEVERE, null, ex);
-            return 0;
-        } finally {
-            try {
-                lector.close();
-            } catch (IOException ex) {
-                Logger.getLogger(Bloc_Jframe.class.getName()).log(Level.SEVERE, null, ex);
-                return 0;
-            }
-        }
-        return 0;
-    }
-    
-   
     /**
      * @param args the command line arguments
      */
@@ -185,20 +158,20 @@ public class Bloc_Jframe extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Bloc_Jframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Bloc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Bloc_Jframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Bloc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Bloc_Jframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Bloc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Bloc_Jframe.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Bloc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Bloc_Jframe().setVisible(true);
+                new Bloc().setVisible(true);
             }
         });
     }
@@ -211,8 +184,6 @@ public class Bloc_Jframe extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuItem nuevo;
-    private javax.swing.JTextArea textArea;
+    private javax.swing.JTextArea textarea;
     // End of variables declaration//GEN-END:variables
-
-
 }
