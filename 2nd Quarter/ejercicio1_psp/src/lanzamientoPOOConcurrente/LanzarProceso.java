@@ -3,25 +3,22 @@ package lanzamientoPOOConcurrente;
 import java.io.IOException;
 
 public class LanzarProceso {
-    public static int contador_proceso = 0;
-    ProcessBuilder process;
-    public String ruta;
-    public int numero;
+    ProcessBuilder lanzador = null;
+    public String ruta = null;
+    
 
-    LanzarProceso(String ruta, int numero) {
+    LanzarProceso(String ruta) {
         this.ruta = ruta;
-        this.numero = numero;
-        contador_proceso++;
     }
 
     public void ejecutar(int numero) {
-        System.out.println("Ejecutando el proceso numero " + numero);
-        process = new ProcessBuilder(this.ruta);
+        System.out.println("[LanzarProceso - ejecutar] Ejecutando el proceso " + numero);
+        lanzador = new ProcessBuilder(this.ruta);
         try {
-            process.start();
+            lanzador.start();
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("Error con el proceso " + numero);
+            System.out.println("[LanzarProceso - ejecutar] Error con el proceso " + numero);
         }
     }
 }
