@@ -34,6 +34,7 @@ public void setValues(JTextField pesoTF,JTextField alturaTF, JTextField nombreTF
     }else{
         composicion = " Obesidad";
     }
+    System.out.println(composicion);
     
 }
     /**

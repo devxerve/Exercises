@@ -92,6 +92,7 @@ public class Resultado extends javax.swing.JDialog {
         }
         indice.setText("Su indice de masa corporal es " + imc);
         composicion.setText("Su peso es " + compo);
+        
     }
     /**
      * @param args the command line arguments
