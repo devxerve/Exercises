@@ -105,10 +105,23 @@ public class Bloc extends javax.swing.JFrame {
     private void abrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirActionPerformed
         abrirFichero();
         leerFichero(fichero);
-        archivoAbierto = 1;        
+        archivoAbierto = 1;
     }//GEN-LAST:event_abrirActionPerformed
 
-
+    private int escribirFichero(File fichero){
+        int resultado = 0;
+        try {
+            FileWriter fw = new FileWriter(fichero,true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.append(textarea.getText());
+            bw.close();
+            resultado = 1;
+        } catch (IOException ex) {
+            System.getLogger(Bloc.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            System.out.println("Error al acceder al fichero");
+        }
+        return resultado;
+    }
     private void leerFichero(File fichero) {
         try{
             FileReader fr = new FileReader(fichero);
@@ -139,7 +152,7 @@ public class Bloc extends javax.swing.JFrame {
     
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
         if(archivoAbierto == 1){
-            int archivoGuardado = guardarArchivo();
+            int archivoGuardado = escribirFichero(fichero);
         }else{
             javax.swing.JOptionPane.showMessageDialog(this, "Primero debe abrir o seleccionar un archivo", "Archivo no encontrado", javax.swing.JOptionPane.WARNING_MESSAGE);
             abrirActionPerformed(evt);
@@ -159,7 +172,7 @@ public class Bloc extends javax.swing.JFrame {
 
     private int guardarArchivo() {
         int resultado = 0;
-        String texto = textarea.getText();
+        String texto = textarea.getText();       
         archivoGuardado = 1;
         return resultado;
     }
