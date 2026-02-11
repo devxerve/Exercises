@@ -11,7 +11,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import javax.swing.JFileChooser;
 
 /**
@@ -22,7 +21,7 @@ import javax.swing.JFileChooser;
 public class Bloc extends javax.swing.JFrame {
     final static int INI_INT = 0;
     private static int archivoAbierto = INI_INT;
-    private static int archivoGuardado = INI_INT;
+    private static String textoAnterior = null;
     private File fichero = null;
     /**
      * Creates new form Bloc
@@ -104,25 +103,47 @@ public class Bloc extends javax.swing.JFrame {
 
     private void abrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirActionPerformed
         abrirFichero();
-        leerFichero(fichero);
+        leerFichero();
         archivoAbierto = 1;
     }//GEN-LAST:event_abrirActionPerformed
-
-    private int escribirFichero(File fichero){
+    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+        int archivoGuardado = INI_INT;
+        if(archivoAbierto == 1){
+            archivoGuardado = escribirFichero();
+                if(archivoGuardado == -1){
+                    javax.swing.JOptionPane.showMessageDialog(this, "Error al guardar el archivo\n Codigo de error: -1", "Fallo al guardar", javax.swing.JOptionPane.WARNING_MESSAGE);
+                }
+        }else{
+            javax.swing.JOptionPane.showMessageDialog(this, "Primero debe abrir o seleccionar un archivo", "Archivo no encontrado", javax.swing.JOptionPane.WARNING_MESSAGE);
+            abrirActionPerformed(evt);
+            archivoGuardado = guardarArchivo();                
+        }
+        
+        if(archivoGuardado != 1){
+           archivoGuardado = guardarComo();
+        }
+        
+    }//GEN-LAST:event_guardarActionPerformed
+    
+    private int escribirFichero(){
         int resultado = 0;
         try {
-            FileWriter fw = new FileWriter(fichero,true);
+            FileWriter fw = new FileWriter(fichero,false);
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.append(textarea.getText());
+            String texto = textarea.getText();           
+            bw.write(texto);
             bw.close();
             resultado = 1;
         } catch (IOException ex) {
             System.getLogger(Bloc.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
             System.out.println("Error al acceder al fichero");
+            return -1;
         }
+        
         return resultado;
     }
-    private void leerFichero(File fichero) {
+    
+    private void leerFichero() {
         try{
             FileReader fr = new FileReader(fichero);
             BufferedReader br = new BufferedReader(fr);
@@ -133,6 +154,7 @@ public class Bloc extends javax.swing.JFrame {
                 linea = br.readLine();
             }
             textarea.setText(texto);
+            textoAnterior = textarea.getText();
             br.close();
         }catch(FileNotFoundException e){
             e.printStackTrace();
@@ -141,7 +163,7 @@ public class Bloc extends javax.swing.JFrame {
             ex.printStackTrace();
         }
     }
-
+    
     private void abrirFichero() {
         JFileChooser selector = new JFileChooser();
         int seleccion = selector.showOpenDialog(selector);
@@ -150,30 +172,19 @@ public class Bloc extends javax.swing.JFrame {
         }
     }
     
-    private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-        if(archivoAbierto == 1){
-            int archivoGuardado = escribirFichero(fichero);
-        }else{
-            javax.swing.JOptionPane.showMessageDialog(this, "Primero debe abrir o seleccionar un archivo", "Archivo no encontrado", javax.swing.JOptionPane.WARNING_MESSAGE);
-            abrirActionPerformed(evt);
-            int archivoGuardado = guardarArchivo();
-        }
-        if(archivoGuardado != 1){
-            int archivoGuardado = guardarComo();
+    private int guardarComo() {
+        JFileChooser selector = new JFileChooser();
+        int seleccion = selector.showSaveDialog(selector);
+        if(seleccion == JFileChooser.APPROVE_OPTION){
+            fichero = selector.getSelectedFile();
         }
         
-    }//GEN-LAST:event_guardarActionPerformed
-
-    private int guardarComo() {
-        int resultado = 0;
-
-        return resultado;
+        return seleccion;
     }
 
     private int guardarArchivo() {
         int resultado = 0;
         String texto = textarea.getText();       
-        archivoGuardado = 1;
         return resultado;
     }
 
