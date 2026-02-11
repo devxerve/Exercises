@@ -1,9 +1,13 @@
 package tiendaComidaRapida;
 
+
 //IMPORTACIONES
 	import java.util.ArrayList;
 	import java.util.InputMismatchException;
 	import java.util.Scanner;
+	import java.io.PrintStream;
+	import java.io.UnsupportedEncodingException;
+	import java.nio.charset.StandardCharsets;
 	
 public class Tienda {
 		
@@ -30,13 +34,23 @@ public class Tienda {
 		} while (!salir);
 		return output;
 	}
+	/**
+	 *  Setea el charset para formatear la salida (UTF-8)
+	 */
+	private static void setCharset() {
+		try {
+			System.setOut(new PrintStream(System.out, true, StandardCharsets.UTF_8.name()));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+	}
 			
 //MAIN
 	public static void main(String[] args) {
-		
+		setCharset();
 	//DECLARACION E INICIALIZACION DE VARIABLES Y OBJETOS
 		int opcion, precio_total_k, precio_total_p, precio_total_h ,precio_total;
-		opcion =precio_total_k = precio_total_p = precio_total_h = precio_total = INI_INT;
+		opcion = precio_total_k = precio_total_p = precio_total_h = precio_total = INI_INT;
 		Scanner entrada = new Scanner (System.in);	
 		int adicionales = INI_INT;
 		ArrayList<Hamburguesa> lista_hamburguesa = new ArrayList<Hamburguesa>();
