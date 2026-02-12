@@ -1,0 +1,24 @@
+package lanzador;
+
+import java.io.File;
+import java.io.IOException;
+
+public class LanzadorProceso {
+    public static void main(String[] args) {
+        File dir = new File(".\\tarea2_psp\\bin");
+        System.out.println(dir.getAbsolutePath());
+        String directorio = dir.getAbsolutePath();
+        ProcessBuilder pb = new ProcessBuilder("java","sumador.Sumador","1","51");
+        pb.directory(dir);
+        pb.inheritIO();
+        try{
+            Process proceso = pb.start();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        
+    }
+
+
+
+}
