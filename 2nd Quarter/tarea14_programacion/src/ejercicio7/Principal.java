@@ -2,12 +2,6 @@ package ejercicio7;
 
 import java.util.Scanner;
 
-/**
- *Hacer un programa que pida por pantalla una hora en este formato "HH:MM", donde siempre va a haber dos dígitos de hora y 
- * dos dígitos de minutos (aunque sea cero). Calculará cuántos minutos quedan para finalizar el día, por lo que tendremos que
- * calcular cuántos minutos quedan desde esa hora introducida, hasta las 00:00. Devolverá la cantidad en minutos restante. Ejemplo: 22:45 75
- */
-
 public class Principal {
     final static int MINUTOS = 1440; // 24*60
     public static void main(String[] args) {
