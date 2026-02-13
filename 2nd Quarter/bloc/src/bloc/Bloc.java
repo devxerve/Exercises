@@ -100,7 +100,22 @@ public class Bloc extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {
+    
+        String nombreFichero = JOptionPane.showInputDialog(this,"Introduce el nombre del archivo","Nuevo",JOptionPane.INFORMATION_MESSAGE);
+        if (nombreFichero == null || nombreFichero.trim().isEmpty()) {
+            JOptionPane.showInputDialog(this,"Debes darle un nombre a tu archivo", "Nuevo",JOptionPane.INFORMATION_MESSAGE);
+        }
+    try {
+        FileWriter escritor = new FileWriter(nombreFichero); 
+        escritor.write(jTextArea.getText());
+        escritor.close();
+        JOptionPane.showMessageDialog(this,"Archivo creado correctamente","Nuevo",JOptionPane.INFORMATION_MESSAGE);
+        jTextArea.setText("");
+    } catch (IOException ex) {
+        System.err.println("Error en el sistema (FileWriter)");
+    }
+}
     private void abrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirActionPerformed
         abrirFichero();
         leerFichero();
