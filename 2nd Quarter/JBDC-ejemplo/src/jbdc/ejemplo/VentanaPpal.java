@@ -74,8 +74,8 @@ public class VentanaPpal extends javax.swing.JFrame {
 
     private void btn_conexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_conexionActionPerformed
         gestorBBDD = new BBDD();
-        Connection con1 = crearConexion(gestorBBDD.url,gestorBBDD.user,gestorBBDD.pswd);
-        if(gestorBBDD !=null){
+        Connection con1 = BBDD.crearConexion(gestorBBDD.url,gestorBBDD.user,gestorBBDD.pswd);
+        if(con1 !=null){
             textarea1.setText("Conexion correcta a la base de datos");
         }
     }//GEN-LAST:event_btn_conexionActionPerformed
@@ -130,8 +130,7 @@ public class BBDD{
         user= "root";
         pswd = "root";
     }
-}
-Connection crearConexion(String url, String user, String pswd){
+    static Connection crearConexion(String url, String user, String pswd){
     Connection con1 = null;
     try{
         con1 = DriverManager.getConnection(url, user, pswd);
@@ -141,7 +140,11 @@ Connection crearConexion(String url, String user, String pswd){
     }catch(SQLException ex){
         ex.printStackTrace();
     }
-    
+    return con1;
 }
+}
+}
+
+
  
 
