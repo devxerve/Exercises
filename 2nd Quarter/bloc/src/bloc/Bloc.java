@@ -12,7 +12,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JFileChooser;
-
+import javax.swing.JOptionPane;
 /**
  *
  * @author ufvuser
@@ -108,10 +108,10 @@ public class Bloc extends javax.swing.JFrame {
         }
     try {
         FileWriter escritor = new FileWriter(nombreFichero); 
-        escritor.write(jTextArea.getText());
+        escritor.write(textarea.getText());
         escritor.close();
         JOptionPane.showMessageDialog(this,"Archivo creado correctamente","Nuevo",JOptionPane.INFORMATION_MESSAGE);
-        jTextArea.setText("");
+        textarea.setText("");
     } catch (IOException ex) {
         System.err.println("Error en el sistema (FileWriter)");
     }
