@@ -122,11 +122,11 @@ public class VentanaPpal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 public class BBDD{
-    public String url = "jbdc:mysql//localhost:3305/centroestudios";
+    public String url = "jdbc:mysql//localhost:3305/centroestudios";
     public String user= "root";
     public String pswd = "root";
     public BBDD(){ 
-        url = "jbdc:mysql//localhost:3305/centroestudios";
+        url = "jdbc:mysql://localhost:3305/centroestudios";
         user= "root";
         pswd = "root";
     }
