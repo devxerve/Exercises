@@ -6,6 +6,7 @@ package jbdc.ejemplo;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 /**
  *
  * @author LABORATORIOS
@@ -31,6 +32,15 @@ public class VentanaPpal extends javax.swing.JFrame {
         btn_conexion = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         textarea1 = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        nombreTF = new javax.swing.JTextField();
+        apellidoTF = new javax.swing.JTextField();
+        dniTF = new javax.swing.JTextField();
+        emailTF = new javax.swing.JTextField();
+        insertarBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,6 +55,33 @@ public class VentanaPpal extends javax.swing.JFrame {
         textarea1.setRows(5);
         jScrollPane1.setViewportView(textarea1);
 
+        jLabel1.setText("Nombre");
+
+        jLabel2.setText("DNI");
+
+        jLabel3.setText("Apellido");
+
+        jLabel4.setText("Email");
+
+        nombreTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreTFActionPerformed(evt);
+            }
+        });
+
+        apellidoTF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                apellidoTFActionPerformed(evt);
+            }
+        });
+
+        insertarBTN.setText("Insertar alumno");
+        insertarBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertarBTNActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -55,18 +92,59 @@ public class VentanaPpal extends javax.swing.JFrame {
                         .addGap(360, 360, 360)
                         .addComponent(btn_conexion))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 879, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(199, 199, 199))
+                        .addGap(128, 128, 128)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 539, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(nombreTF, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jLabel2)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(apellidoTF)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(dniTF, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                                            .addComponent(emailTF))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(insertarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(btn_conexion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(nombreTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(apellidoTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(dniTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(emailTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addComponent(insertarBTN)
+                .addContainerGap(198, Short.MAX_VALUE))
         );
 
         pack();
@@ -74,11 +152,28 @@ public class VentanaPpal extends javax.swing.JFrame {
 
     private void btn_conexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_conexionActionPerformed
         gestorBBDD = new BBDD();
-        Connection con1 = BBDD.crearConexion(gestorBBDD.url,gestorBBDD.user,gestorBBDD.pswd);
+        con1 = BBDD.crearConexion(gestorBBDD.url,gestorBBDD.user,gestorBBDD.pswd);
         if(con1 !=null){
             textarea1.setText("Conexion correcta a la base de datos");
         }
     }//GEN-LAST:event_btn_conexionActionPerformed
+
+    private void nombreTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombreTFActionPerformed
+
+    private void apellidoTFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidoTFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_apellidoTFActionPerformed
+
+    private void insertarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertarBTNActionPerformed
+        String nombre = nombreTF.getText().trim();
+        String apellido = apellidoTF.getText().trim();
+        String dni = dniTF.getText().trim();
+        String email = emailTF.getText().trim();
+        BBDD.insertarDatos(nombre,apellido,dni,email);
+
+    }//GEN-LAST:event_insertarBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -116,33 +211,20 @@ public class VentanaPpal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField apellidoTF;
     private javax.swing.JButton btn_conexion;
+    private javax.swing.JTextField dniTF;
+    private javax.swing.JTextField emailTF;
+    private javax.swing.JButton insertarBTN;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField nombreTF;
     private javax.swing.JTextArea textarea1;
     // End of variables declaration//GEN-END:variables
-
-public class BBDD{
-    public String url = "jdbc:mysql//localhost:3305/centroestudios";
-    public String user= "root";
-    public String pswd = "root";
-    public BBDD(){ 
-        url = "jdbc:mysql://localhost:3305/centroestudios";
-        user= "root";
-        pswd = "root";
-    }
-    static Connection crearConexion(String url, String user, String pswd){
-    Connection con1 = null;
-    try{
-        con1 = DriverManager.getConnection(url, user, pswd);
-        if(con1!=null){
-            System.out.println("Conexion correcta");
-        }
-    }catch(SQLException ex){
-        ex.printStackTrace();
-    }
-    return con1;
-}
-}
+    static Connection con1 = null;
 }
 
 
