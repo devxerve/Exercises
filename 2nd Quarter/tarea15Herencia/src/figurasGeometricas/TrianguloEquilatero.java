@@ -42,7 +42,20 @@ public class TrianguloEquilatero {
 		public static int getContador(){
 			return TrianguloEquilatero.contador;
 		}
-		public String getInfo() {
-			return "El lado del triángulo es " + lado + " y su altura es " + altura;
+		
+		@Override
+		public String toString() {
+			return "El lado del triángulo" + super.toString() +" es " + this.lado + " y su altura es " + this.altura;
+		}
+
+		@Override
+		public TrianguloEquilatero clone(){
+			TrianguloEquilatero copia = null;
+			try{
+				copia = (TrianguloEquilatero) super.clone();
+			}catch(CloneNotSupportedException e){
+				e.printStackTrace();
+			}
+			return copia;
 		}
 	}

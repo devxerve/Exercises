@@ -1,5 +1,5 @@
 package figurasGeometricas;
-public class Circulo {
+public class Circulo implements Cloneable {
 	final static int INI_INT = 0;
 	final static float INI_FLOAT = 0F;
 	public static int contador = INI_INT;
@@ -32,8 +32,21 @@ public class Circulo {
 	public static int getContador(){
 		return Circulo.contador;
 	}
-	public void getInfo() {
-		String info =  "El radio del círculo es " + radio;
-        System.out.println(info);
+
+	@Override
+	public String toString() {
+		String info =  "El radio del círculo" + super.toString()+ " es " + this.radio;
+        return info;
+	}
+	@Override
+	public Circulo clone(){
+		Circulo copia = null;
+		try {
+			copia = (Circulo) super.clone();
+			
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+	return copia;
 	}
 }

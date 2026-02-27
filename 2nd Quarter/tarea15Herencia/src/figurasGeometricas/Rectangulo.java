@@ -42,9 +42,21 @@ public class Rectangulo {
 		public static int getContador(){
 			return Rectangulo.contador;
 		}
-		public String getInfo() {
-			return "La base del rectángulo es " + base + " y su altura es " + altura;
+		@Override
+		public String toString() {
+			return "La base del rectángulo" + super.toString()+ "es " + this.base + " y su altura es " + this.altura;
+		}
 
+		@Override
+		public Rectangulo clone(){
+			Rectangulo copia = null;
+			try{
+				copia = (Rectangulo) super.clone();
+			}catch(CloneNotSupportedException e){
+				e.printStackTrace();
+			}
+			return copia;
+		}
 	}
-}
+
 
