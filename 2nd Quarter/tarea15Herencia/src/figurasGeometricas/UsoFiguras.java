@@ -9,6 +9,17 @@ public class UsoFiguras {
         System.out.println(re1.toString());
         Circulo cir2 = cir1.clone();
         System.out.println(cir2.toString());
+
+
+        Rectangulo re2 = re1.clone();
+        Rectangulo re3 = new Rectangulo(5, 15);
+        System.out.println(re3.toString());
+
+        if(re2.equals(re1)){
+            System.out.println("Los rectangulos" + re1 + " y " + re2 + " son identicos");
+        }else{
+            System.out.println(re1 + " y " + re2 + " no son iguales");
+        }
     }
     
 }

@@ -1,6 +1,6 @@
 package figurasGeometricas;
 
-public class Rectangulo {	
+public class Rectangulo extends FiguraGeometrica implements Cloneable{	
 		final static int INI_INT = 0;
 		public static int contador = INI_INT;
 		private int altura = INI_INT;
@@ -21,8 +21,8 @@ public class Rectangulo {
 		}
 		
 		public float perimetro() {
-			float perimetro = (2*this.base)+(2*this.altura);
-			return perimetro;
+			perimetro = (2*this.base)+(2*this.altura);
+			return (float) perimetro;
 		}
 		
 		public int area() {
@@ -56,6 +56,18 @@ public class Rectangulo {
 				e.printStackTrace();
 			}
 			return copia;
+		}
+		@Override 
+		public boolean equals(Object obj){
+			boolean resultado = false;
+			Rectangulo rectangulo = (Rectangulo) obj;
+
+			if((this.altura == rectangulo.altura) && (this.base == rectangulo.base)){
+				resultado = true;
+				return resultado;
+			}else{
+				return resultado;
+			}
 		}
 	}
 

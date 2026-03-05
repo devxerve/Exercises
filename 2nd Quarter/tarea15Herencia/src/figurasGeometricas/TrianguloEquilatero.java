@@ -1,10 +1,9 @@
 package figurasGeometricas;
-public class TrianguloEquilatero {
+public class TrianguloEquilatero extends FiguraGeometrica implements Cloneable {
 	
 		final static int INI_INT = 0;
 		public static int contador = INI_INT;
-		private int lado = INI_INT;
-		private int altura = INI_INT;
+		
 		
 		public int getAltura() {
 			return altura;

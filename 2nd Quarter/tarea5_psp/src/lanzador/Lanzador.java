@@ -38,7 +38,8 @@ public class Lanzador {
             
             BufferedReader br = new BufferedReader(new InputStreamReader(proceso.getInputStream()));
             String linea;
-            while ((linea = br.readLine()) != null) {
+            linea = br.readLine();
+            while ( linea!= null) {
                 salida.append(linea).append("\n");
             }
             br.close();

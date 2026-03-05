@@ -1,8 +1,5 @@
 package figurasGeometricas;
-public class Circulo implements Cloneable {
-	final static int INI_INT = 0;
-	final static float INI_FLOAT = 0F;
-	public static int contador = INI_INT;
+public class Circulo extends FiguraGeometrica implements Cloneable {
 	private float radio = INI_FLOAT;
 	
 	Circulo (float radio){
@@ -11,13 +8,13 @@ public class Circulo implements Cloneable {
 	}
 	
 	public float perimetro() {
-		double perimetro = (2*this.radio)*Math.PI;
+		perimetro = (2*this.radio)*Math.PI;
 		return (float)perimetro;
 	}
 	
 	public float area() {
 		double area = Math.PI * Math.pow(this.radio, 2);
-		return (float) area;
+		return  (float) area;
 	}
 
 	public float getRadio() {
